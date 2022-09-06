@@ -1,6 +1,5 @@
 import random
 from collections import Counter
-from re import A
 
 ##################
 ### Player Info ###
@@ -118,7 +117,7 @@ def selectColumn(turnRoll):
     currentPlayer().gameState[column].insert(0, turnRoll)
 
     # Determine if opponent's board is affected by selection.
-    if turnRoll in currentOpponent().gameState[column]:
+    while turnRoll in currentOpponent().gameState[column]:
         currentOpponent().gameState[column].remove(turnRoll)
 
 # Determines if the current player can make a move
