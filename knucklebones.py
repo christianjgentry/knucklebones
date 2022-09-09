@@ -174,10 +174,6 @@ class MyCounter(Counter):
                 total += key**val
         return total
 
-
-out = MyCounter([3, 3, 2])
-output = out.sum_entries()
-
 # Calculates each player's score
 
 
