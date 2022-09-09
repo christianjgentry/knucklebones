@@ -159,38 +159,47 @@ def playerTurn():
     global turnCount
     turnCount += 1
 
-
 # Logic to calculate the score
 
 
-class MyCounter(Counter):
-    def __ini__(*arg, **kwargs):
-        super().__init__(*arg, **kwargs)
+def scoreColumn(playerColumn):
 
-    def sum_entries(self):
-        total = 0
-        for key, val in self.items():
-            if isinstance(key, int):
-                total += key**val
-        return total
+    count1 = []
+    count2 = []
+    count3 = []
+
+    for i in playerColumn:
+        if isinstance(i, int):
+            count = playerColumn.count(i)
+
+            if count == 1:
+                count1.append(i)
+            elif count == 2:
+                count2.append(i)
+            elif count == 3:
+                count3.append(i)
+    
+    calcCount1 = sum(count1)
+    calcCount2 = sum(count2) * 2
+    calcCount3 = sum(count3) * 3
+
+    calcList = [calcCount1, calcCount2, calcCount3]
+
+    calcTotal = sum(calcList)
+
+    return calcTotal
 
 # Calculates each player's score
 
 
 def calculateScore():
-    playerColumnAScore = MyCounter(
-        currentPlayer().gameState[0]).sum_entries()
-    playerColumnBScore = MyCounter(
-        currentPlayer().gameState[1]).sum_entries()
-    playerColumnCScore = MyCounter(
-        currentPlayer().gameState[2]).sum_entries()
+    playerColumnAScore = scoreColumn(currentPlayer().gameState[0])
+    playerColumnBScore = scoreColumn(currentPlayer().gameState[1])
+    playerColumnCScore = scoreColumn(currentPlayer().gameState[2])
 
-    opponentColumnAScore = MyCounter(
-        currentOpponent().gameState[0]).sum_entries()
-    opponentColumnBScore = MyCounter(
-        currentOpponent().gameState[1]).sum_entries()
-    opponentColumnCScore = MyCounter(
-        currentOpponent().gameState[2]).sum_entries()
+    opponentColumnAScore = scoreColumn(currentOpponent().gameState[0])
+    opponentColumnBScore = scoreColumn(currentOpponent().gameState[1])
+    opponentColumnCScore = scoreColumn(currentOpponent().gameState[2])
 
     # Sum all column scores together
     currentPlayer().score = playerColumnAScore + \
