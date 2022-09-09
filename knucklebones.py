@@ -164,10 +164,12 @@ def playerTurn():
 
 def scoreColumn(playerColumn):
 
+    # Create a list to hold duplicate values from list
     count1 = []
     count2 = []
     count3 = []
 
+    # Check list of integers for duplicates then move to list depending on how many times they appear.
     for i in playerColumn:
         if isinstance(i, int):
             count = playerColumn.count(i)
@@ -179,15 +181,19 @@ def scoreColumn(playerColumn):
             elif count == 3:
                 count3.append(i)
     
+    # Sum all items for each list together and then apply the correct scoring logic
     calcCount1 = sum(count1)
     calcCount2 = sum(count2) * 2
     calcCount3 = sum(count3) * 3
 
+    # Add all of the calculated totals to a new list
     calcList = [calcCount1, calcCount2, calcCount3]
 
-    calcTotal = sum(calcList)
+    # Sum the calculated lists
+    columnScore = sum(calcList)
 
-    return calcTotal
+    # Return final column score
+    return columnScore
 
 # Calculates each player's score
 
